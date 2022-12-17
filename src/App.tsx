@@ -8,7 +8,9 @@ function App() {
         <div className="basis-1/3 sm:basis-3/12">
           <Stage />
         </div>
-        <PersonalInfo />
+        <div>
+          <PersonalInfo />
+        </div>
       </div>
     </>
   );
