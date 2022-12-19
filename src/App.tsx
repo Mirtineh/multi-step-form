@@ -9,8 +9,10 @@ function App() {
           <Stage />
         </div>
         <div className="bg-magnolia sm:bg-white h-full w-full relative">
-          <div className="absolute sm:static w-72 h-full sm:w-[500px] mx-auto p-7  my-auto rounded-md -top-16 bg-white">
-            <PersonalInfo />
+          <div className="absolute sm:static w-full h-fit -top-16">
+            <div className="w-[345px] h-fit sm:w-[500px] mx-auto p-7 sm:mt-10 rounded-md bg-white">
+              <PersonalInfo />
+            </div>
           </div>
         </div>
       </div>
