@@ -30,13 +30,13 @@ const Plan: FunctionComponent<PlanProps> = ({ type, isActive }) => {
   return (
     <div
       className={
-        "flex gap-4 border rounded-md p-4 " +
+        "flex sm:flex-col gap-4 sm:gap-10 border rounded-md p-4 " +
         (isActive
           ? "border-marine-blue bg-purplish-blue bg-opacity-5"
           : "border-cool-gray")
       }
     >
-      <img src={icon} alt="" />
+      <img src={icon} alt="" className="w-10" />
       <div className="flex flex-col">
         <p className="text-marine-blue font-medium">{label}</p>
         <p className="text-cool-gray">$9/mo</p>
