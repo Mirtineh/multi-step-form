@@ -9,9 +9,17 @@ function App() {
           <Stage />
         </div>
         <div className="bg-magnolia sm:bg-white h-full w-full relative">
-          <div className="absolute sm:static w-full h-fit -top-16">
-            <div className="w-[345px] h-fit sm:w-[500px] mx-auto p-7 sm:mt-10 rounded-md bg-white">
+          <div className="flex flex-col justify-between items-center absolute sm:static w-full sm:w-[500px] h-auto sm:h-full -top-16 bottom-0 sm:justify-around mx-auto">
+            <div className="w-[345px] sm:w-full h-fit  p-7 rounded-md bg-white">
               <PersonalInfo />
+            </div>
+            <div className="flex justify-between w-full px-4 py-6 bg-white">
+              <button className="text-cool-gray hover:text-marine-blue">
+                Go Back
+              </button>
+              <button className="bg-marine-blue text-white py-2 sm:py-3 px-4 sm:px-5 rounded-md hover:bg-purplish-blue hover:cursor-pointer">
+                Next Step
+              </button>
             </div>
           </div>
         </div>
