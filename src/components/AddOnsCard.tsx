@@ -18,7 +18,7 @@ const AddonsCard: FunctionComponent<AddonsCardProps> = ({
     <>
       <div
         className={
-          "flex justify-between items-center p-3 border rounded-md hover:cursor-pointer hover:border-marine-blue " +
+          "flex justify-between items-center gap-4 sm:gap-5 p-3 sm:p-5 border rounded-md hover:cursor-pointer hover:border-marine-blue " +
           (isChecked
             ? "bg-purplish-blue bg-opacity-5 border-y-marine-blue"
             : "border-cool-gray")
@@ -32,11 +32,15 @@ const AddonsCard: FunctionComponent<AddonsCardProps> = ({
         >
           <img src={icon} alt="" className="w-3 h-3" />
         </div>
-        <div className="flex flex-col">
+        <div className="flex flex-1 flex-col">
           <span className="text-marine-blue font-medium">{header}</span>
-          <span className="text-cool-gray text-xs">{description}</span>
+          <span className="text-cool-gray text-xs sm:text-base">
+            {description}
+          </span>
         </div>
-        <span className="text-purplish-blue text-xs">{amount}</span>
+        <span className="text-purplish-blue text-xs sm:text-base">
+          {amount}
+        </span>
       </div>
     </>
   );
