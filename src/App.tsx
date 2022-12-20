@@ -3,6 +3,7 @@ import PersonalInfo from "./components/PersonalInfo";
 import SelectPlan from "./components/SelectPlan";
 import Stage from "./components/Stage";
 import AddOns from "./components/AddOns";
+import Summary from "./components/Summary";
 function App() {
   return (
     <>
@@ -15,7 +16,8 @@ function App() {
             <div className="w-[345px] sm:w-full h-fit  p-7 rounded-md bg-white">
               {/* <PersonalInfo /> */}
               {/* <SelectPlan /> */}
-              <AddOns />
+              {/* <AddOns /> */}
+              <Summary />
             </div>
             <div className="flex justify-between w-full px-4 py-6 bg-white">
               <button className="text-cool-gray hover:text-marine-blue">
