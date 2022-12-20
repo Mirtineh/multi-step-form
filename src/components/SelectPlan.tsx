@@ -23,9 +23,9 @@ const SelectPlan: FunctionComponent<SelectPlanProps> = () => {
               Monthly
             </span>
             {isMonthly ? (
-              <FontAwesomeIcon icon={faToggleOn} flip="horizontal" />
+              <FontAwesomeIcon icon={faToggleOn} size="2x" flip="horizontal" />
             ) : (
-              <FontAwesomeIcon icon={faToggleOn} />
+              <FontAwesomeIcon icon={faToggleOn} size="2x" />
             )}
             <span className={isMonthly ? "text-cool-gray" : "text-marine-blue"}>
               Yearly

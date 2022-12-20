@@ -2,6 +2,7 @@ import "./App.css";
 import PersonalInfo from "./components/PersonalInfo";
 import SelectPlan from "./components/SelectPlan";
 import Stage from "./components/Stage";
+import AddOns from "./components/AddOns";
 function App() {
   return (
     <>
@@ -13,7 +14,8 @@ function App() {
           <div className="flex flex-col justify-between items-center absolute sm:static w-full sm:w-[500px] h-auto sm:h-full -top-16 bottom-0 sm:justify-around mx-auto">
             <div className="w-[345px] sm:w-full h-fit  p-7 rounded-md bg-white">
               {/* <PersonalInfo /> */}
-              <SelectPlan />
+              {/* <SelectPlan /> */}
+              <AddOns />
             </div>
             <div className="flex justify-between w-full px-4 py-6 bg-white">
               <button className="text-cool-gray hover:text-marine-blue">

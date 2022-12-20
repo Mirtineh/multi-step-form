@@ -30,7 +30,7 @@ const Plan: FunctionComponent<PlanProps> = ({ type, isActive }) => {
   return (
     <div
       className={
-        "flex sm:flex-col gap-4 sm:gap-10 border rounded-md p-4 " +
+        "flex sm:flex-col gap-4 sm:gap-10 border rounded-md p-4 hover:cursor-pointer hover:border-marine-blue " +
         (isActive
           ? "border-marine-blue bg-purplish-blue bg-opacity-5"
           : "border-cool-gray")
