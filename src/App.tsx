@@ -1,19 +1,23 @@
 import "./App.css";
 import PersonalInfo from "./components/PersonalInfo";
-import SelectPlan from "./components/SelectPlan";
 import Stage from "./components/Stage";
 import AddOns from "./components/AddOns";
 import Summary from "./components/Summary";
 import Finished from "./components/Finished";
 import { useState } from "react";
+import SelectPlan from "./components/SelectPlan";
+export type PlanInterface = "arcade" | "advanced" | "pro";
 function App() {
   const [pageIndex, setPageIndex] = useState(0);
   const [isMonthly, setIsMonthly] = useState(true);
+  const [activePlan, setActivePlan] = useState<PlanInterface>("arcade");
   const pages = [
     <PersonalInfo />,
     <SelectPlan
+      activePlan={activePlan}
       isMonthly={isMonthly}
       onDurationChange={() => setIsMonthly((prev) => !prev)}
+      onActivePlanChange={(plan) => setActivePlan(plan)}
     />,
     <AddOns />,
     <Summary />,

@@ -2,16 +2,17 @@ import { FunctionComponent } from "react";
 import iconArcade from "../assets/images/icon-arcade.svg";
 import iconPro from "../assets/images/icon-pro.svg";
 import iconAdvanced from "../assets/images/icon-advanced.svg";
+import { PlanInterface } from "../App";
+import { useAppSelector, useAppDispatch } from "../store/hooks";
+import { changePlan, selectPlan } from "../store/plans";
 
 interface PlanProps {
-  type: "arcade" | "advanced" | "pro";
-  isActive: boolean;
+  type: PlanInterface;
 }
-type plan = {
-  label: "Arcade" | "Advanced" | "pro";
-};
 
-const Plan: FunctionComponent<PlanProps> = ({ type, isActive }) => {
+const Plan: FunctionComponent<PlanProps> = ({ type }) => {
+  const plan = useAppSelector(selectPlan);
+  const dispatch = useAppDispatch();
   const plans = {
     arcade: {
       label: "Arcade",
@@ -31,10 +32,11 @@ const Plan: FunctionComponent<PlanProps> = ({ type, isActive }) => {
     <div
       className={
         "flex sm:flex-col gap-4 sm:gap-10 border rounded-md p-4 hover:cursor-pointer hover:border-marine-blue " +
-        (isActive
+        (type === plan
           ? "border-marine-blue bg-purplish-blue bg-opacity-5"
           : "border-cool-gray")
       }
+      onClick={() => dispatch(changePlan(type))}
     >
       <img src={icon} alt="" className="w-10" />
       <div className="flex flex-col">
