@@ -13,12 +13,7 @@ function App() {
   const [activePlan, setActivePlan] = useState<PlanInterface>("arcade");
   const pages = [
     <PersonalInfo />,
-    <SelectPlan
-      activePlan={activePlan}
-      isMonthly={isMonthly}
-      onDurationChange={() => setIsMonthly((prev) => !prev)}
-      onActivePlanChange={(plan) => setActivePlan(plan)}
-    />,
+    <SelectPlan />,
     <AddOns />,
     <Summary />,
     <Finished />,

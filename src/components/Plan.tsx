@@ -4,7 +4,12 @@ import iconPro from "../assets/images/icon-pro.svg";
 import iconAdvanced from "../assets/images/icon-advanced.svg";
 import { PlanInterface } from "../App";
 import { useAppSelector, useAppDispatch } from "../store/hooks";
-import { changePlan, selectPlan } from "../store/plans";
+import {
+  changePlan,
+  planData,
+  selectIsMonthly,
+  selectPlan,
+} from "../store/plans";
 
 interface PlanProps {
   type: PlanInterface;
@@ -12,6 +17,7 @@ interface PlanProps {
 
 const Plan: FunctionComponent<PlanProps> = ({ type }) => {
   const plan = useAppSelector(selectPlan);
+  const isMonthly = useAppSelector(selectIsMonthly);
   const dispatch = useAppDispatch();
   const plans = {
     arcade: {
@@ -41,7 +47,14 @@ const Plan: FunctionComponent<PlanProps> = ({ type }) => {
       <img src={icon} alt="" className="w-10" />
       <div className="flex flex-col">
         <p className="text-marine-blue font-medium">{label}</p>
-        <p className="text-cool-gray">$9/mo</p>
+        <p className="text-cool-gray">
+          {isMonthly
+            ? `$${planData[type].monthly}/mo`
+            : `$${planData[type].yearly}/yr`}
+        </p>
+        {!isMonthly ? (
+          <p className="text-marine-blue text-sm">2 months free</p>
+        ) : null}
       </div>
     </div>
   );
