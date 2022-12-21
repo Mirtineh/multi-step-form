@@ -1,9 +1,28 @@
 import { FunctionComponent } from "react";
+import { useAppSelector } from "../store/hooks";
+import {
+  addOnData,
+  planData,
+  selectAddOns,
+  selectIsMonthly,
+  selectPlan,
+} from "../store/plans";
 import Content from "./Content";
 
 interface SummaryProps {}
 
 const Summary: FunctionComponent<SummaryProps> = () => {
+  const plan = useAppSelector(selectPlan);
+  const isMonthly = useAppSelector(selectIsMonthly);
+  const addOns = useAppSelector(selectAddOns);
+  const getTotal = (type: "monthly" | "yearly") => {
+    let total = 0;
+    total += planData[plan][type];
+    addOns.forEach((item) => {
+      total += addOnData[item][type];
+    });
+    return total;
+  };
   return (
     <Content
       header="Finishing up"
@@ -13,26 +32,38 @@ const Summary: FunctionComponent<SummaryProps> = () => {
         <div className="flex justify-between items-center">
           <div className="flex flex-col">
             <span className="text-marine-blue font-medium">
-              Arcade (Monthly)
+              {planData[plan].label} ({isMonthly ? "Monthly" : "Yearly"})
             </span>
             <button className="text-cool-gray underline text-left w-fit hover:text-purplish-blue">
               Change
             </button>
           </div>
           <span className="text-marine-blue font-medium sm:text-lg">
-            $90/mo
+            {isMonthly
+              ? `$${planData[plan].monthly}/mo`
+              : `$${planData[plan].yearly}/yr`}
           </span>
         </div>
         <hr className="border-light-gray" />
-        <div className="flex justify-between">
-          <p>Online service</p>
-          <span className="text-marine-blue">+$1/mo</span>
-        </div>
+        {addOns.map((item) => (
+          <div className="flex justify-between">
+            <p>{addOnData[item].label}</p>
+            <span className="text-marine-blue">
+              {isMonthly
+                ? `$${addOnData[item].monthly}/mo`
+                : `$${addOnData[item].yearly}/yr`}
+            </span>
+          </div>
+        ))}
       </div>
       <div className="flex justify-between p-4 sm:p-6">
-        <p className="text-cool-gray text-sm sm:text-base">Total (per month)</p>
+        <p className="text-cool-gray text-sm sm:text-base">
+          Total (per {isMonthly ? "month" : "year"})
+        </p>
         <span className="text-purplish-blue font-bold sm:text-xl">
-          +$120/mo
+          {isMonthly
+            ? `$${getTotal("monthly")}/mo`
+            : `$${getTotal("yearly")}/yr`}
         </span>
       </div>
     </Content>

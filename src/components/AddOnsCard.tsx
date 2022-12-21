@@ -1,19 +1,28 @@
 import { FunctionComponent } from "react";
 import icon from "../assets/images/icon-checkmark.svg";
+import { useAppDispatch, useAppSelector } from "../store/hooks";
+import {
+  addOnData,
+  addOnInterface,
+  modifyAddon,
+  selectIsMonthly,
+} from "../store/plans";
 
 interface AddonsCardProps {
   header: string;
   description: string;
-  amount: string;
   isChecked: boolean;
+  type: addOnInterface;
 }
 
 const AddonsCard: FunctionComponent<AddonsCardProps> = ({
   header,
   description,
-  amount,
+  type,
   isChecked,
 }) => {
+  const isMonthly = useAppSelector(selectIsMonthly);
+  const dispatch = useAppDispatch();
   return (
     <>
       <div
@@ -23,6 +32,7 @@ const AddonsCard: FunctionComponent<AddonsCardProps> = ({
             ? "bg-purplish-blue bg-opacity-5 border-y-marine-blue"
             : "border-cool-gray")
         }
+        onClick={() => dispatch(modifyAddon(type))}
       >
         <div
           className={
@@ -39,7 +49,9 @@ const AddonsCard: FunctionComponent<AddonsCardProps> = ({
           </span>
         </div>
         <span className="text-purplish-blue text-xs sm:text-base">
-          {amount}
+          {isMonthly
+            ? `$${addOnData[type].monthly}/mo`
+            : `$${addOnData[type].yearly}/yr`}
         </span>
       </div>
     </>

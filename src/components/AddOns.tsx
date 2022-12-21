@@ -1,10 +1,13 @@
 import { FunctionComponent } from "react";
+import { useAppSelector } from "../store/hooks";
+import { selectAddOns } from "../store/plans";
 import AddonsCard from "./AddOnsCard";
 import Content from "./Content";
 
 interface AddOnsProps {}
 
 const AddOns: FunctionComponent<AddOnsProps> = () => {
+  const addons = useAppSelector(selectAddOns);
   return (
     <>
       <Content
@@ -15,20 +18,20 @@ const AddOns: FunctionComponent<AddOnsProps> = () => {
           <AddonsCard
             header="Online service"
             description="Access to multiplayer games"
-            amount="+$1/mo"
-            isChecked={true}
+            type="online"
+            isChecked={addons.includes("online")}
           />
           <AddonsCard
             header="Larger storage"
             description="Extra 1TB of cloud save"
-            amount="+$2/mo"
-            isChecked={true}
+            type="larger"
+            isChecked={addons.includes("larger")}
           />
           <AddonsCard
             header="Customizable profile"
             description="custom theme on your profile"
-            amount="+$2/mo"
-            isChecked={false}
+            type="customizable"
+            isChecked={addons.includes("customizable")}
           />
         </div>
       </Content>
