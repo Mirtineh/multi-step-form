@@ -4,10 +4,15 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import Plan from "./Plan";
 import { faToggleOn } from "@fortawesome/free-solid-svg-icons";
 
-interface SelectPlanProps {}
+interface SelectPlanProps {
+  isMonthly: boolean;
+  onDurationChange: () => void;
+}
 
-const SelectPlan: FunctionComponent<SelectPlanProps> = () => {
-  const [isMonthly, setIsMonthly] = useState(false);
+const SelectPlan: FunctionComponent<SelectPlanProps> = ({
+  isMonthly,
+  onDurationChange,
+}) => {
   return (
     <>
       <Content
@@ -23,11 +28,25 @@ const SelectPlan: FunctionComponent<SelectPlanProps> = () => {
               Monthly
             </span>
             {isMonthly ? (
-              <FontAwesomeIcon icon={faToggleOn} size="2x" flip="horizontal" />
+              <FontAwesomeIcon
+                icon={faToggleOn}
+                className="hover:cursor-pointer"
+                size="2x"
+                flip="horizontal"
+                onClick={() => onDurationChange()}
+              />
             ) : (
-              <FontAwesomeIcon icon={faToggleOn} size="2x" />
+              <FontAwesomeIcon
+                icon={faToggleOn}
+                className="hover:cursor-pointer"
+                size="2x"
+                onClick={() => onDurationChange()}
+              />
             )}
-            <span className={isMonthly ? "text-cool-gray" : "text-marine-blue"}>
+            <span
+              className={isMonthly ? "text-cool-gray" : "text-marine-blue"}
+              onClick={() => onDurationChange()}
+            >
               Yearly
             </span>
           </div>
