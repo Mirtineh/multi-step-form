@@ -3,16 +3,18 @@ import { RootState } from "./configureStore";
 
 export type planInterface = "arcade" | "advanced" | "pro";
 export type addOnInterface = "online" | "larger" | "customizable";
-interface planState {
+interface userState {
   name: string;
   email: string;
+  phone: string;
   isMonthly: boolean;
   plan: planInterface;
   addons: addOnInterface[];
 }
-const initialState: planState = {
+const initialState: userState = {
   name: "",
   email: "",
+  phone: "",
   isMonthly: true,
   plan: "arcade",
   addons: [],
@@ -32,15 +34,35 @@ const slice = createSlice({
         state.addons.push(action.payload);
       }
     },
+    modifyName: (state, action: PayloadAction<string>) => {
+      state.name = action.payload;
+    },
+    modifyEmail: (state, action: PayloadAction<string>) => {
+      state.email = action.payload;
+    },
+    modifyPhone: (state, action: PayloadAction<string>) => {
+      state.phone = action.payload;
+    },
     toggleDuration: (state) => {
       state.isMonthly = !state.isMonthly;
     },
   },
 });
 //Action Creators
-export const { changePlan, toggleDuration, modifyAddon } = slice.actions;
+export const {
+  changePlan,
+  toggleDuration,
+  modifyAddon,
+  modifyName,
+  modifyEmail,
+  modifyPhone,
+} = slice.actions;
 //Selectors
 export const selectPlan = (state: RootState) => state.plan;
+export const selectUser = (state: RootState) => {
+  const { name, email, phone } = state;
+  return { name, email, phone };
+};
 export const selectIsMonthly = (state: RootState) => state.isMonthly;
 export const selectAddOns = (state: RootState) => state.addons;
 export const planData = {
