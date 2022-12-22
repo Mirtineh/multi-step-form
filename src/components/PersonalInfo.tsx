@@ -1,7 +1,6 @@
 import { FunctionComponent } from "react";
 import Content from "./Content";
 import Input from "./Input";
-import { z } from "zod";
 import { useAppDispatch, useAppSelector } from "../store/hooks";
 import {
   modifyEmail,
@@ -11,11 +10,6 @@ import {
 } from "../store/plans";
 
 interface PersonalInfoProps {}
-const userSchema = z.object({
-  name: z.string(),
-  email: z.string().email(),
-  phone: z.string(),
-});
 
 const PersonalInfo: FunctionComponent<PersonalInfoProps> = () => {
   const user = useAppSelector(selectUser);
@@ -28,17 +22,20 @@ const PersonalInfo: FunctionComponent<PersonalInfoProps> = () => {
       >
         <Input
           label="Name"
+          type="name"
           placeholder="e.g.Stephen King"
           value={user.name}
           onChange={(name) => dispatch(modifyName(name))}
         />
         <Input
+          type="email"
           label="Email Address"
           placeholder="e.g.stephenking@lorem.com"
           value={user.email}
           onChange={(email) => dispatch(modifyEmail(email))}
         />
         <Input
+          type="phone"
           label="Phone Number"
           placeholder="e.g.+1 234 567 890"
           value={user.phone}

@@ -6,11 +6,16 @@ import Summary from "./components/Summary";
 import Finished from "./components/Finished";
 import { useState } from "react";
 import SelectPlan from "./components/SelectPlan";
+import { useAppDispatch, useAppSelector } from "./store/hooks";
+import { selectUser, setErrors } from "./store/plans";
+import { UserSchema } from "./validation";
+import { fromZodError } from "zod-validation-error";
 export type PlanInterface = "arcade" | "advanced" | "pro";
 function App() {
   const [pageIndex, setPageIndex] = useState(0);
-  const [isMonthly, setIsMonthly] = useState(true);
-  const [activePlan, setActivePlan] = useState<PlanInterface>("arcade");
+  const user = useAppSelector(selectUser);
+  const dispatch = useAppDispatch();
+
   const pages = [
     <PersonalInfo />,
     <SelectPlan />,
@@ -18,6 +23,21 @@ function App() {
     <Summary />,
     <Finished />,
   ];
+  const validate = () => {
+    const results = UserSchema.safeParse(user);
+    if (!results.success) {
+      dispatch(setErrors(results.error.flatten()));
+      return false;
+    }
+    return true;
+  };
+  const handleNext = () => {
+    if (pageIndex === 0) {
+      if (validate()) setPageIndex((prev) => prev + 1);
+    } else {
+      setPageIndex((prev) => prev + 1);
+    }
+  };
   return (
     <>
       <div className="flex flex-col sm:flex-row sm:p-4 h-screen">
@@ -42,7 +62,7 @@ function App() {
                 </button>
                 <button
                   className="bg-marine-blue text-white py-2 sm:py-3 px-4 sm:px-5 rounded-md hover:bg-purplish-blue hover:cursor-pointer"
-                  onClick={() => setPageIndex((prev) => prev + 1)}
+                  onClick={handleNext}
                 >
                   {pageIndex === 3 ? "Confirm" : "Next Step"}
                 </button>

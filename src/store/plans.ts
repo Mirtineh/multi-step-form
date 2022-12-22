@@ -1,5 +1,6 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { RootState } from "./configureStore";
+import { FlattenedErrors } from "../validation";
 
 export type planInterface = "arcade" | "advanced" | "pro";
 export type addOnInterface = "online" | "larger" | "customizable";
@@ -10,6 +11,7 @@ interface userState {
   isMonthly: boolean;
   plan: planInterface;
   addons: addOnInterface[];
+  errors?: FlattenedErrors;
 }
 const initialState: userState = {
   name: "",
@@ -46,6 +48,9 @@ const slice = createSlice({
     toggleDuration: (state) => {
       state.isMonthly = !state.isMonthly;
     },
+    setErrors: (state, action: PayloadAction<FlattenedErrors>) => {
+      state.errors = action.payload;
+    },
   },
 });
 //Action Creators
@@ -56,6 +61,7 @@ export const {
   modifyName,
   modifyEmail,
   modifyPhone,
+  setErrors,
 } = slice.actions;
 //Selectors
 export const selectPlan = (state: RootState) => state.plan;
@@ -65,6 +71,7 @@ export const selectUser = (state: RootState) => {
 };
 export const selectIsMonthly = (state: RootState) => state.isMonthly;
 export const selectAddOns = (state: RootState) => state.addons;
+export const selectErrors = (state: RootState) => state.errors?.fieldErrors;
 export const planData = {
   arcade: { yearly: 90, monthly: 9, label: "Arcade" },
   advanced: { yearly: 120, monthly: 12, label: "Advanced" },
