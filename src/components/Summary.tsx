@@ -51,7 +51,7 @@ const Summary: FunctionComponent<SummaryProps> = () => {
         </div>
         <hr className="border-light-gray" />
         {addOns.map((item) => (
-          <div className="flex justify-between">
+          <div className="flex justify-between" key={item}>
             <p>{addOnData[item].label}</p>
             <span className="text-marine-blue">
               {isMonthly
