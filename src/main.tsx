@@ -8,7 +8,29 @@ import "./index.css";
 ReactDOM.createRoot(document.getElementById("root") as HTMLElement).render(
   <React.StrictMode>
     <Provider store={store}>
-      <App />
+      <main>
+        <App />
+      </main>
+      <footer>
+        <div className="text-center text-marine-blue">
+          <span>Challenge by </span>
+          <a
+            href="https://www.frontendmentor.io/challenges/multistep-form-YVAnSdqQBJ"
+            target="_blank"
+            className="hover:cursor-pointer font-bold"
+          >
+            Frontend Mentor
+          </a>
+          . <span>Coded by </span>
+          <a
+            href="https://www.frontendmentor.io/profile/Mirtineh"
+            className="hover:cursor-pointer font-bold"
+          >
+            Mirtineh
+          </a>
+          .
+        </div>
+      </footer>
     </Provider>
   </React.StrictMode>
 );
