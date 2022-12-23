@@ -9,7 +9,6 @@ import SelectPlan from "./components/SelectPlan";
 import { useAppDispatch, useAppSelector } from "./store/hooks";
 import { selectUser, setErrors } from "./store/plans";
 import { UserSchema } from "./validation";
-import { fromZodError } from "zod-validation-error";
 export type PlanInterface = "arcade" | "advanced" | "pro";
 function App() {
   const [pageIndex, setPageIndex] = useState(0);
@@ -29,6 +28,7 @@ function App() {
       dispatch(setErrors(results.error.flatten()));
       return false;
     }
+    dispatch(setErrors(undefined));
     return true;
   };
   const handleNext = () => {

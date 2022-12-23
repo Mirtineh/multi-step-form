@@ -48,7 +48,7 @@ const slice = createSlice({
     toggleDuration: (state) => {
       state.isMonthly = !state.isMonthly;
     },
-    setErrors: (state, action: PayloadAction<FlattenedErrors>) => {
+    setErrors: (state, action: PayloadAction<FlattenedErrors | undefined>) => {
       state.errors = action.payload;
     },
   },
