@@ -25,12 +25,12 @@ Users should be able to:
 
 ### Screenshot
 
-![](./screenshots/desktop-personal.png)
-![](./screenshots/desktop-active.png.png)
-![](./screenshots/desktop-plan.png)
-![](./screenshots/desktop-addon.png)
-![](./screenshots/desktop-summary.png)
-![](./screenshots/desktop-complete.png)
+![](./screenshots/desktop-Personal.png)
+![](./screenshots/desktop-Active.png)
+![](./screenshots/desktop-Plan.pn)
+![](./screenshots/desktop-Addon.png)
+![](./screenshots/desktop-Summary.png)
+![](./screenshots/desktop-Complete.png)
 ![](./screenshots/mobile-personal.png)
 ![](./screenshots/mobile-plan.png.png)
 ![](./screenshots/mobile-addon.png)
