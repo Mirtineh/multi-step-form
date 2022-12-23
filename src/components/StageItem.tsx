@@ -12,10 +12,10 @@ const StageItem: FunctionComponent<StageItemProps> = ({
   step,
 }) => {
   return (
-    <div className={"flex gap-4 justify-center sm:justify-start "}>
+    <div className={"flex gap-4 justify-center items-center sm:justify-start "}>
       <div
         className={
-          "flex justify-center items-center w-8 h-8 sm:h-12 sm:w-12 rounded-full " +
+          "flex justify-center items-center w-8 h-8 rounded-full " +
           (isActive
             ? "text-marine-blue bg-light-blue"
             : "text-white border border-white ")
@@ -24,7 +24,7 @@ const StageItem: FunctionComponent<StageItemProps> = ({
         {step}
       </div>
 
-      <div className="sm:flex flex-col hidden sm:visible">
+      <div className="sm:flex flex-col hidden sm:visible sm:text-sm">
         <span className="text-cool-gray">STEP {step}</span>
         <span className="text-white font-bold">{label}</span>
       </div>
