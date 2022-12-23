@@ -14,11 +14,10 @@ import {
   setPageIndex,
 } from "./store/plans";
 import { UserSchema } from "./validation";
+import Navigation from "./components/Navigation";
 export type PlanInterface = "arcade" | "advanced" | "pro";
 function App() {
   const pageIndex = useAppSelector(selectPageIndex);
-  const user = useAppSelector(selectUser);
-  const dispatch = useAppDispatch();
 
   const pages = [
     <PersonalInfo />,
@@ -27,22 +26,6 @@ function App() {
     <Summary />,
     <Finished />,
   ];
-  const validate = () => {
-    const results = UserSchema.safeParse(user);
-    if (!results.success) {
-      dispatch(setErrors(results.error.flatten()));
-      return false;
-    }
-    dispatch(setErrors(undefined));
-    return true;
-  };
-  const handleNext = () => {
-    if (pageIndex === 0) {
-      if (validate()) dispatch(setPageIndex(pageIndex + 1));
-    } else {
-      dispatch(setPageIndex(pageIndex + 1));
-    }
-  };
   return (
     <>
       <div className="flex flex-col sm:flex-row sm:p-4 h-screen">
@@ -54,25 +37,7 @@ function App() {
             <div className="w-[345px] sm:w-full h-fit  p-7 rounded-md bg-white shadow-xl sm:shadow-none">
               {pages[pageIndex]}
             </div>
-            {pageIndex !== pages.length - 1 ? (
-              <div className="flex justify-between w-full px-4 py-6 bg-white">
-                <button
-                  className={
-                    "text-cool-gray hover:text-marine-blue " +
-                    (pageIndex === 0 ? "invisible" : "")
-                  }
-                  onClick={() => dispatch(setPageIndex(pageIndex - 1))}
-                >
-                  Go Back
-                </button>
-                <button
-                  className="bg-marine-blue text-white py-2 sm:py-3 px-4 sm:px-5 rounded-md hover:bg-purplish-blue hover:cursor-pointer"
-                  onClick={handleNext}
-                >
-                  {pageIndex === 3 ? "Confirm" : "Next Step"}
-                </button>
-              </div>
-            ) : null}
+            {pageIndex !== pages.length - 1 ? <Navigation /> : null}
           </div>
         </div>
       </div>

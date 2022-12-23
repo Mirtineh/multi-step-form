@@ -30,7 +30,7 @@ const Input: FunctionComponent<InputProps> = ({
       <input
         type="text"
         className={
-          "w-full p-3 border rounded-md focus:border-marine-blue focus:outline-none " +
+          "w-full p-3 border rounded-md focus:border-purplish-blue focus:outline-none hover:cursor-pointer hover:border-purplish-blue " +
           (errors?.[type] ? "border-strawberry-red" : "border-cool-gray")
         }
         placeholder={placeholder}
