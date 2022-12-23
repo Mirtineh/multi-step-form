@@ -1,11 +1,12 @@
 import { FunctionComponent } from "react";
-import { useAppSelector } from "../store/hooks";
+import { useAppDispatch, useAppSelector } from "../store/hooks";
 import {
   addOnData,
   planData,
   selectAddOns,
   selectIsMonthly,
   selectPlan,
+  setPageIndex,
 } from "../store/plans";
 import Content from "./Content";
 
@@ -15,6 +16,7 @@ const Summary: FunctionComponent<SummaryProps> = () => {
   const plan = useAppSelector(selectPlan);
   const isMonthly = useAppSelector(selectIsMonthly);
   const addOns = useAppSelector(selectAddOns);
+  const dispatch = useAppDispatch();
   const getTotal = (type: "monthly" | "yearly") => {
     let total = 0;
     total += planData[plan][type];
@@ -34,7 +36,10 @@ const Summary: FunctionComponent<SummaryProps> = () => {
             <span className="text-marine-blue font-medium">
               {planData[plan].label} ({isMonthly ? "Monthly" : "Yearly"})
             </span>
-            <button className="text-cool-gray underline text-left w-fit hover:text-purplish-blue">
+            <button
+              className="text-cool-gray underline text-left w-fit hover:text-purplish-blue"
+              onClick={() => dispatch(setPageIndex(1))}
+            >
               Change
             </button>
           </div>

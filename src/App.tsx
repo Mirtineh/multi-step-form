@@ -7,11 +7,16 @@ import Finished from "./components/Finished";
 import { useState } from "react";
 import SelectPlan from "./components/SelectPlan";
 import { useAppDispatch, useAppSelector } from "./store/hooks";
-import { selectUser, setErrors } from "./store/plans";
+import {
+  selectPageIndex,
+  selectUser,
+  setErrors,
+  setPageIndex,
+} from "./store/plans";
 import { UserSchema } from "./validation";
 export type PlanInterface = "arcade" | "advanced" | "pro";
 function App() {
-  const [pageIndex, setPageIndex] = useState(0);
+  const pageIndex = useAppSelector(selectPageIndex);
   const user = useAppSelector(selectUser);
   const dispatch = useAppDispatch();
 
@@ -33,9 +38,9 @@ function App() {
   };
   const handleNext = () => {
     if (pageIndex === 0) {
-      if (validate()) setPageIndex((prev) => prev + 1);
+      if (validate()) dispatch(setPageIndex(pageIndex + 1));
     } else {
-      setPageIndex((prev) => prev + 1);
+      dispatch(setPageIndex(pageIndex + 1));
     }
   };
   return (
@@ -56,7 +61,7 @@ function App() {
                     "text-cool-gray hover:text-marine-blue " +
                     (pageIndex === 0 ? "invisible" : "")
                   }
-                  onClick={() => setPageIndex((prev) => prev - 1)}
+                  onClick={() => dispatch(setPageIndex(pageIndex - 1))}
                 >
                   Go Back
                 </button>

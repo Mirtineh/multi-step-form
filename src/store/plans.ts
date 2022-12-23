@@ -11,6 +11,7 @@ interface userState {
   isMonthly: boolean;
   plan: planInterface;
   addons: addOnInterface[];
+  pageIndex: number;
   errors?: FlattenedErrors;
 }
 const initialState: userState = {
@@ -20,6 +21,7 @@ const initialState: userState = {
   isMonthly: true,
   plan: "arcade",
   addons: [],
+  pageIndex: 0,
 };
 const slice = createSlice({
   name: "plans",
@@ -48,6 +50,9 @@ const slice = createSlice({
     toggleDuration: (state) => {
       state.isMonthly = !state.isMonthly;
     },
+    setPageIndex: (state, action: PayloadAction<number>) => {
+      state.pageIndex = action.payload;
+    },
     setErrors: (state, action: PayloadAction<FlattenedErrors | undefined>) => {
       state.errors = action.payload;
     },
@@ -61,6 +66,7 @@ export const {
   modifyName,
   modifyEmail,
   modifyPhone,
+  setPageIndex,
   setErrors,
 } = slice.actions;
 //Selectors
@@ -72,6 +78,7 @@ export const selectUser = (state: RootState) => {
 export const selectIsMonthly = (state: RootState) => state.isMonthly;
 export const selectAddOns = (state: RootState) => state.addons;
 export const selectErrors = (state: RootState) => state.errors?.fieldErrors;
+export const selectPageIndex = (state: RootState) => state.pageIndex;
 export const planData = {
   arcade: { yearly: 90, monthly: 9, label: "Arcade" },
   advanced: { yearly: 120, monthly: 12, label: "Advanced" },
