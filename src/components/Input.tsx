@@ -21,12 +21,12 @@ const Input: FunctionComponent<InputProps> = ({
   const errors = useAppSelector(selectErrors);
   return (
     <label>
-      <div className="flex justify-between">
-        <p className="text-marine-blue">{label}</p>
+      <span className="flex justify-between">
+        <span className="text-marine-blue">{label}</span>
         {errors?.[type] ? (
           <p className="text-strawberry-red">{errors?.[type]}</p>
         ) : null}
-      </div>
+      </span>
       <input
         type="text"
         className={

@@ -7,13 +7,7 @@ import Finished from "./components/Finished";
 import { useState } from "react";
 import SelectPlan from "./components/SelectPlan";
 import { useAppDispatch, useAppSelector } from "./store/hooks";
-import {
-  selectPageIndex,
-  selectUser,
-  setErrors,
-  setPageIndex,
-} from "./store/plans";
-import { UserSchema } from "./validation";
+import { selectPageIndex } from "./store/plans";
 import Navigation from "./components/Navigation";
 export type PlanInterface = "arcade" | "advanced" | "pro";
 function App() {
